@@ -1,0 +1,15 @@
+# Secrets — NEVER commit these
+.env
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Student uploads (temporary)
+uploads/
+
+# NOTE: reference/rubric.pdf and reference/game_manual.pdf ARE committed on
+# purpose so the deployed app has them. Keep this repo PRIVATE.
