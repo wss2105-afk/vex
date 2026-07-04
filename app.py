@@ -45,10 +45,10 @@ RENDER_LADDER = [1700, 1500, 1300, 1100, 950, 800, 680]
 JPEG_QUALITY = 80
 
 MODELS = {
-    "Claude Opus 4.8 (best quality, recommended)": "claude-opus-4-8",
-    "Claude Sonnet 5 (faster, cheaper)": "claude-sonnet-5",
+    "Claude Sonnet 5 (recommended — faster & cheaper)": "claude-sonnet-5",
+    "Claude Opus 4.8 (highest quality, more expensive)": "claude-opus-4-8",
 }
-DEFAULT_MODEL_LABEL = "Claude Opus 4.8 (best quality, recommended)"
+DEFAULT_MODEL_LABEL = "Claude Sonnet 5 (recommended — faster & cheaper)"
 
 MAX_OUTPUT_TOKENS = 8000
 
@@ -477,7 +477,7 @@ def build_content(rubric_bytes, manual_bytes, nb_blocks, focus_text):
     content.append({
         "type": "text",
         "text": "--- OVERRIDE GAME MANUAL (extracted text) ---\n\n" + manual_text,
-        "cache_control": {"type": "ephemeral"},
+        "cache_control": {"type": "ephemeral", "ttl": "1h"},
     })
 
     # 3. The student's notebook (pre-rendered image blocks).
