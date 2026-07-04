@@ -45,10 +45,11 @@ RENDER_LADDER = [1700, 1500, 1300, 1100, 950, 800, 680]
 JPEG_QUALITY = 80
 
 MODELS = {
-    "Claude Sonnet 5 (recommended — faster & cheaper)": "claude-sonnet-5",
-    "Claude Opus 4.8 (highest quality, more expensive)": "claude-opus-4-8",
+    "Claude Haiku 4.5 (recommended — cheapest & fastest)": "claude-haiku-4-5-20251001",
+    "Claude Sonnet 4.5 (higher quality)": "claude-sonnet-4-5-20250929",
+    "Claude Opus 4.5 (highest quality, most expensive)": "claude-opus-4-5-20251101",
 }
-DEFAULT_MODEL_LABEL = "Claude Sonnet 5 (recommended — faster & cheaper)"
+DEFAULT_MODEL_LABEL = "Claude Haiku 4.5 (recommended — cheapest & fastest)"
 
 MAX_OUTPUT_TOKENS = 8000
 
@@ -519,7 +520,9 @@ if run:
         st.stop()
 
     try:
-        client = Anthropic(api_key=api_key)
+        base_url = (os.getenv("ANTHROPIC_BASE_URL", "").strip()
+                    or "https://factchat-cloud.mindlogic.ai/v1/gateway/claude")
+        client = Anthropic(api_key=api_key, base_url=base_url)
 
         with st.spinner("Preparing notebook pages..."):
             nb_blocks, info = build_notebook_blocks(notebook_files)
